@@ -27,6 +27,13 @@ namespace DijkstrasHeaven
             InitializeComponent();
             InitializeColorPickers();
             draw = new DrawGraph(mainCanvas, GraphCreator.CreateFullGraph());
+            draw.NodeClicked += Draw_NodeClicked;
+        }
+
+        private void Draw_NodeClicked(object sender, EventArgs e)
+        {
+            Node clickedNode = (Node)sender;
+            MessageBox.Show(Dijkstra.ShortestPaths(draw.CurrentGraph, clickedNode), "Najkrótsze ścieżki " + clickedNode.ID);
         }
 
         private void InitializeColorPickers()

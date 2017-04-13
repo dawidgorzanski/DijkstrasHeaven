@@ -8,11 +8,11 @@ namespace DijkstrasHeaven.Model
 {
     class Dijkstra
     {
-        public static string ShortestPaths(Graph graph, Node selectedNode)
+        public static string ShortestPaths(Graph graph, Node selectedNode, out int[] d)
         {
             List<int> Q = new List<int>();
 
-            int[] d = new int[graph.Nodes.Count];
+            d = new int[graph.Nodes.Count];
             int[] p = new int[graph.Nodes.Count];
             for (int i = 0; i < graph.Nodes.Count; ++i)
             {
@@ -22,12 +22,12 @@ namespace DijkstrasHeaven.Model
             }
 
             d[selectedNode.ID] = 0;
-            
-            while(Q.Count > 0)
+
+            while (Q.Count > 0)
             {
                 //Szukam najmniejszej wartości w tablicy d
                 int minValue = Int32.MaxValue, minIndex = Int32.MaxValue;
-                for(int i = 0; i < d.Count(); ++i)
+                for (int i = 0; i < d.Count(); ++i)
                     if (minValue > d[i] && Q.Count(x => x == i) == 1)
                     {
                         minValue = d[i];
@@ -93,6 +93,71 @@ namespace DijkstrasHeaven.Model
             }
 
             return result;
+        }
+        public static int [][] MatrixOfShortestsPaths(Graph graph)
+        {
+            int [] temp;
+            int[][] final = new int[graph.Nodes.Count][];
+            foreach (Node node in graph.Nodes)
+            {
+                temp = new int[graph.Nodes.Count];
+                ShortestPaths(graph, node,out temp);
+                final[node.ID] = temp;
+            }
+            return final;
+        }
+        public static Node MinCenterOfGraph(Graph graph)
+        {
+            int Count = graph.Nodes.Count;
+            int[][] final = MatrixOfShortestsPaths(graph);
+            //na początku zakładam że najkrótsza droga wynosi Count*10
+            //czyli tyle ile najwięcej może wylosować algorytm
+            int indexOfNode = 0;
+            int ShortestPath = Count*10;
+            for(int i = 0;i<Count;i++)
+            {
+                int temp=0;
+                for(int j=0;j<Count;j++)
+                {
+                    temp += final[i][j];
+                }
+                if (temp < ShortestPath)
+                {
+                    indexOfNode = i;
+                    ShortestPath = temp;
+                }
+            }
+            foreach (Node node in graph.Nodes)
+                if (node.ID == indexOfNode)
+                    return node;
+            return null;
+        }
+        public static Node MinMaxCenterOfGraph(Graph graph)
+        {
+            int Count = graph.Nodes.Count;
+            int[][] final = MatrixOfShortestsPaths(graph);
+            //na początku zakładam że najkrótsza droga wynosi 10
+            //czyli tyle ile najwięcej może wylosować algorytm
+            int indexOfNode = 0;
+            int MinMaxPath = 10;
+            for (int i = 0; i < Count; i++)
+            {
+                int temp = 0;
+                for (int j = 0; j < Count; j++)
+                {
+                    if (temp < final[i][j])
+                        temp= final[i][j];
+                }
+                if (temp < MinMaxPath)
+                {
+                    indexOfNode = i;
+                    MinMaxPath = temp;
+                }
+            }
+            foreach (Node node in graph.Nodes)
+                if (node.ID == indexOfNode)
+                    return node;
+            return null;
         }
     }
 }
