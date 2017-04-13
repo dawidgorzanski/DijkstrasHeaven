@@ -50,5 +50,59 @@ namespace DijkstrasHeaven.Model
 
             return fullGraph;
         }
+        public static Graph createConsistentGraph(int Nodes)
+        {
+            
+            while (true)
+            {
+                Random rand = new Random();
+                int CounterOfConnections = 0;
+                int n = nodes;
+                double b = 0.5;
+                //tworze losowy graf o 10 wierzchołkach i stopniu 0.5
+                int[,] result = new int[n, n];
+                for (int i = 0; i < n; i++)
+                    for (int j = 0; j < n; j++)
+                        result[i, j] = 0;
+                for (int i = 1; i < n; i++)
+                    for (int j = 0; j < i; j++)
+                        if (rand.NextDouble() < b)
+                        {
+                            result[i, j] = 1;
+                            result[j, i] = 1;
+                            CounterOfConnections++;
+                        }
+                //zmieniam graf aby był eulerowski
+
+                for (int i = 0; i < n - 1; i++)
+                {
+                    int deg = 0;
+                    for (int j = 0; j < n; j++)
+                        if (result[i, j] > 0)
+                            deg++;
+                    //check if degree is even
+                    if (deg % 2 != 0)
+                    {
+                        int x = rand.Next(n - i - 1) + i + 1;
+                        if (result[i, x] > 0)
+                        {
+                            result[i, x] = 0;
+                            result[x, i] = 0;
+                            CounterOfConnections--;
+                        }
+                        else
+                        {
+                            result[i, x] = 1;
+                            result[x, i] = 1;
+                            CounterOfConnections++;
+                        }
+                    }
+                }
+                 if (CounterOfConnections != 0)
+                {
+                      return CreateFromMatrix(result);
+                }
+            }     
+        }
     }
 }
