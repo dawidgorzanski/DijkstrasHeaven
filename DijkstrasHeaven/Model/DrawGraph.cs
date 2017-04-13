@@ -20,6 +20,14 @@ namespace DijkstrasHeaven.Model
         public int Radius { get; set; }
         public int NodeRadius { get; set; }
 
+        public event EventHandler NodeClicked;
+        protected virtual void OnNodeClicked(Node clickedNode)
+        {
+            var handler = NodeClicked;
+            if (handler != null)
+                handler(clickedNode, EventArgs.Empty);
+        }
+
         public DrawGraph(Canvas canvas, Graph graph)
         {
             this.CurrentGraph = graph;
@@ -83,9 +91,8 @@ namespace DijkstrasHeaven.Model
 
         private void Label_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            Node selectedNode = ((Label)sender).DataContext as Node;
-
-            MessageBox.Show(Dijkstra.ShortestPaths(CurrentGraph, selectedNode), "Najkrótsze ścieżki " + selectedNode.ID);
+            Node clickedNode = ((Label)sender).DataContext as Node;
+            OnNodeClicked(clickedNode);
         }
 
         private void Label_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
