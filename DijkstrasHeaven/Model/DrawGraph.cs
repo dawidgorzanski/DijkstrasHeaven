@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace DijkstrasHeaven.Model
@@ -62,13 +65,37 @@ namespace DijkstrasHeaven.Model
                 _canvas.Children.Add(ellipse);
 
                 Label label = new Label();
+                label.DataContext = CurrentGraph.Nodes[i];
+                Binding binding = new Binding();
+                binding.Path = new PropertyPath("ID");
+                BindingOperations.SetBinding(label, Label.ContentProperty, binding);
                 label.Height = 50;
                 label.Width = 50;
-                label.Content = CurrentGraph.Nodes[i].ID;
+                label.MouseEnter += Label_MouseEnter;
+                label.MouseLeave += Label_MouseLeave;
+                label.MouseLeftButtonUp += Label_MouseLeftButtonUp;
+                
                 Canvas.SetLeft(label, x - 15);
                 Canvas.SetTop(label, y - 15);
                 _canvas.Children.Add(label);
             }
+        }
+
+        private void Label_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Node selectedNode = ((Label)sender).DataContext as Node;
+
+            MessageBox.Show(Dijkstra.ShortestPaths(CurrentGraph, selectedNode), "Najkrótsze ścieżki " + selectedNode.ID);
+        }
+
+        private void Label_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Arrow;
+        }
+
+        private void Label_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Hand;
         }
 
         //rysowanie pełnego grafu
@@ -101,8 +128,18 @@ namespace DijkstrasHeaven.Model
             line.X2 = connection.Node2.PointOnScreen.X + NodeRadius / 2;
             line.Y1 = connection.Node1.PointOnScreen.Y + NodeRadius / 2;
             line.Y2 = connection.Node2.PointOnScreen.Y + NodeRadius / 2;
+            
             //Insert() zamiast Add(), aby linie były "pod spodem" - liczy się kolejność dodawania, im dalej na liście tym "wyżej"
             _canvas.Children.Insert(0, line);
+
+            Label label = new Label();
+            label.Foreground = Brushes.DarkBlue;
+            label.Content = connection.Weight;
+            double x = (connection.Node1.PointOnScreen.X + connection.Node2.PointOnScreen.X) / 2;
+            double y = (connection.Node1.PointOnScreen.Y + connection.Node2.PointOnScreen.Y) / 2;
+            Canvas.SetLeft(label, x - 15);
+            Canvas.SetTop(label, y);
+            _canvas.Children.Add(label);
         }
 
         public void ClearAll(bool OnlyView = true)

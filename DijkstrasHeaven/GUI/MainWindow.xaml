@@ -26,6 +26,8 @@
 
                 <GroupBox Header="Operacje">
                     <StackPanel>
+                        <xtlk:IntegerUpDown Name="intUpDownNodes" Minimum="2" Value="6"/>
+                        <Button Name="btnCreateRandomGraph" Content="Utwórz spójny graf" Click="btnCreateRandomGraph_Click" Margin="0,5,0,0"/>
                         <Button Name="btnOpenFromFile" Content="Otwórz plik..." Click="btnOpenFromFile_Click" Margin="0,5,0,0"/>
                         <Button Name="btnSaveToFile" Content="Zapisz do pliku..." Click="btnSaveToFile_Click" Margin="0,5,0,0"/>
                         <Button Name="btnClear" Content="Wyczyść" Margin="0,5,0,5" Click="btnClear_Click" />

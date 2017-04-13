@@ -110,5 +110,30 @@ namespace DijkstrasHeaven
                 }
             }
         }
+
+        private void btnCreateRandomGraph_Click(object sender, RoutedEventArgs e)
+        {
+            if (intUpDownNodes.Value != null)
+            {
+                int Nodes = (int)intUpDownNodes.Value;
+                draw.ClearAll();
+
+                while (true)
+                {
+                    Graph tempGraph = GraphCreator.CreateConsistentGraph(Nodes);
+                    if (StronglyConnectedComponent.Find(tempGraph))
+                    {
+                        draw.CurrentGraph = tempGraph;
+                        break;
+                    }
+                }
+
+                draw.NodeRadius = (int)sliderNodeRadius.Value;
+                draw.Radius = (int)sliderRadius.Value;
+
+                draw.DrawMainCircle();
+                draw.Draw();
+            }
+        }
     }
 }

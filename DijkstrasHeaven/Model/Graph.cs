@@ -130,11 +130,8 @@ namespace DijkstrasHeaven.Model
 
         public void ResetStronglyConnections()
         {
-            for (int i = 0; i < _nodes.Count; i++)
-                _nodes[i].StronglyConnectedComponent = false;
-
             for (int i = 0; i < _connections.Count; i++)
-                _connections[i].LineColor = Brushes.Black;
+                _connections[i].LineColor = Brushes.DarkBlue;
         }
 
     }

@@ -127,11 +127,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Connection.cs" />
+    <Compile Include="Model\Dijkstra.cs" />
     <Compile Include="Model\DrawGraph.cs" />
     <Compile Include="Model\Graph.cs" />
     <Compile Include="Model\GraphCreator.cs" />
     <Compile Include="Model\Node.cs" />
     <Compile Include="Model\SaveOpenGraph.cs" />
+    <Compile Include="Model\StronglyConnectedComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

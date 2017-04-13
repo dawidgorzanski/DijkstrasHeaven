@@ -16,7 +16,7 @@ namespace DijkstrasHeaven.Model
 
         public Connection()
         {
-            LineColor = Brushes.Black;
+            LineColor = Brushes.DarkBlue;
         }
     }
 }
