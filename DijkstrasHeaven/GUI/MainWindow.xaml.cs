@@ -33,7 +33,7 @@ namespace DijkstrasHeaven
         private void Draw_NodeClicked(object sender, EventArgs e)
         {
             Node clickedNode = (Node)sender;
-            int[] d = new int[draw.CurrentGraph.Nodes.Count];
+            int[] d;
             MessageBox.Show(Dijkstra.ShortestPaths(draw.CurrentGraph, clickedNode, out d), "Najkrótsze ścieżki " + clickedNode.ID);
         }
 
