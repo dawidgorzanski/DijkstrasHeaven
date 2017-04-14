@@ -8,11 +8,11 @@ namespace DijkstrasHeaven.Model
 {
     class Dijkstra
     {
-        public static string ShortestPaths(Graph graph, Node selectedNode)
+        public static string ShortestPaths(Graph graph, Node selectedNode, out int[] d)
         {
             List<int> Q = new List<int>();
 
-            int[] d = new int[graph.Nodes.Count];
+            d = new int[graph.Nodes.Count];
             int[] p = new int[graph.Nodes.Count];
             for (int i = 0; i < graph.Nodes.Count; ++i)
             {
