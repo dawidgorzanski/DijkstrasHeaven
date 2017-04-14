@@ -159,5 +159,16 @@ namespace DijkstrasHeaven.Model
                     return node;
             return null;
         }
+        public static string WriteMatrix(int [][] Matrix)
+        {
+            string finalString = "";
+            foreach (int[] array in Matrix)
+            {
+                foreach (int number in array)
+                    finalString = finalString + number + " ";
+                finalString = finalString + "\n";
+            }
+            return finalString;
+        }
     }
 }
