@@ -143,5 +143,13 @@ namespace DijkstrasHeaven
                 draw.Draw();
             }
         }
+        private void btnCreateMatrixOfPath_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Macierz odległości:\n"+Dijkstra.WriteMatrix(Dijkstra.MatrixOfShortestsPaths(draw.CurrentGraph)));
+        }
+        private void btnCenterOfGraph_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Wierzchołek centralny ma ID "+Dijkstra.MinCenterOfGraph(draw.CurrentGraph).ID+"\nWierzchołek centralny minimax ma ID "+ Dijkstra.MinMaxCenterOfGraph(draw.CurrentGraph).ID);
+        }
     }
 }
