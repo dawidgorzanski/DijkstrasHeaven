@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DijkstrasHeaven"
         xmlns:xtlk="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         mc:Ignorable="d"
-        Title="Dijkstra's Heaven" Height="768" Width="1366" WindowState="Maximized">
+        Title="Dijkstra's Heaven" Height="768" Width="1366" WindowState="Maximized" Icon="/DijkstrasHeaven;component/Graphics/icon.ico" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*" Name="col1"/>
@@ -24,9 +24,11 @@
                 <Label Content="Promień punktu: " />
                 <Slider Name="sliderNodeRadius" Minimum="6" Maximum="40" IsSnapToTickEnabled="True" TickFrequency="2" Value="10"/>
 
+                
+
                 <GroupBox Header="Operacje">
                     <StackPanel>
-                        <xtlk:IntegerUpDown Name="intUpDownNodes" Minimum="2" Value="6"/>
+                        <xtlk:IntegerUpDown Name="intUpDownNodes" Minimum="2" Maximum="30" Value="6"/>
                         <Button Name="btnCreateRandomGraph" Content="Utwórz spójny graf" Click="btnCreateRandomGraph_Click" Margin="0,5,0,0"/>
                         <Button Name="btnCreateMatrixOfPath" Content="Wyznacz Macierz odległości" Click="btnCreateMatrixOfPath_Click" Margin="0,5,0,0"/>
                         <Button Name="btnCenterOfGraph" Content="Wyznacz centrum i centrum minimax" Click="btnCenterOfGraph_Click" Margin="0,5,0,0"/>

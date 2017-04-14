@@ -1,4 +1,5 @@
-﻿using DijkstrasHeaven.Model;
+﻿using DijkstrasHeaven.GUI;
+using DijkstrasHeaven.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -143,13 +144,17 @@ namespace DijkstrasHeaven
                 draw.Draw();
             }
         }
+
         private void btnCreateMatrixOfPath_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Macierz odległości:\n"+Dijkstra.WriteMatrix(Dijkstra.MatrixOfShortestsPaths(draw.CurrentGraph)));
+            DistanceTableWindow distanceTableWindow = new DistanceTableWindow(Dijkstra.MatrixOfShortestsPaths(draw.CurrentGraph));
+            distanceTableWindow.Show();
         }
+
         private void btnCenterOfGraph_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Wierzchołek centralny ma ID "+Dijkstra.MinCenterOfGraph(draw.CurrentGraph).ID+"\nWierzchołek centralny minimax ma ID "+ Dijkstra.MinMaxCenterOfGraph(draw.CurrentGraph).ID);
+            MessageBox.Show("Wierzchołek centralny: " + Dijkstra.MinCenterOfGraph(draw.CurrentGraph).ID + 
+                "\nWierzchołek centralny minimax: "+ Dijkstra.MinMaxCenterOfGraph(draw.CurrentGraph).ID);
         }
     }
 }

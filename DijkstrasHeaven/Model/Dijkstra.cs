@@ -101,7 +101,7 @@ namespace DijkstrasHeaven.Model
             foreach (Node node in graph.Nodes)
             {
                 temp = new int[graph.Nodes.Count];
-                ShortestPaths(graph, node,out temp);
+                ShortestPaths(graph, node, out temp);
                 final[node.ID] = temp;
             }
             return final;
