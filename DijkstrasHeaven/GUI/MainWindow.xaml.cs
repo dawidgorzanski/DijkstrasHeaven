@@ -153,8 +153,13 @@ namespace DijkstrasHeaven
 
         private void btnCenterOfGraph_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Wierzchołek centralny: " + Dijkstra.MinCenterOfGraph(draw.CurrentGraph).ID + 
-                "\nWierzchołek centralny minimax: "+ Dijkstra.MinMaxCenterOfGraph(draw.CurrentGraph).ID);
+            string myString = "Graf jest pusty. Dziękuje za uwage";
+            if (draw.CurrentGraph.Nodes.Count!=0)
+            {
+                myString = "Wierzchołek centralny: " + Dijkstra.MinCenterOfGraph(draw.CurrentGraph).ID +
+                "\nWierzchołek centralny minimax: " + Dijkstra.MinMaxCenterOfGraph(draw.CurrentGraph).ID;
+            }
+            MessageBox.Show(myString);
         }
     }
 }
