@@ -32,6 +32,7 @@
                         <Button Name="btnCreateRandomGraph" Content="Utwórz spójny graf" Click="btnCreateRandomGraph_Click" Margin="0,5,0,0"/>
                         <Button Name="btnCreateMatrixOfPath" Content="Wyznacz Macierz odległości" Click="btnCreateMatrixOfPath_Click" Margin="0,5,0,0"/>
                         <Button Name="btnCenterOfGraph" Content="Wyznacz centrum i centrum minimax" Click="btnCenterOfGraph_Click" Margin="0,5,0,0"/>
+                        <Button Name="btnMST" Content="Wyznacz minimalne drzewo rozpinające" Click="btnMST_Click" Margin="0,5,0,0"/>
                         <Button Name="btnOpenFromFile" Content="Otwórz plik..." Click="btnOpenFromFile_Click" Margin="0,5,0,0"/>
                         <Button Name="btnSaveToFile" Content="Zapisz do pliku..." Click="btnSaveToFile_Click" Margin="0,5,0,0"/>
                         <Button Name="btnClear" Content="Wyczyść" Margin="0,5,0,5" Click="btnClear_Click" />

@@ -136,6 +136,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Prim.cs" />
     <Compile Include="Model\Connection.cs" />
     <Compile Include="Model\Dijkstra.cs" />
     <Compile Include="Model\DrawGraph.cs" />

@@ -161,5 +161,22 @@ namespace DijkstrasHeaven
             }
             MessageBox.Show(myString);
         }
+
+        private void btnMST_Click(object sender, RoutedEventArgs e)
+        {
+            if (Prim.Algorithm(draw.CurrentGraph))
+            {
+                draw.ClearAll();
+                draw.NodeRadius = (int)sliderNodeRadius.Value;
+                draw.Radius = (int)sliderRadius.Value;
+
+                draw.DrawMainCircle();
+                draw.Draw();
+            }
+            else
+            {
+                MessageBox.Show("Nie znaleziono minimalnego drzewa rozpinajacego!");
+            }
+        }
     }
 }
