@@ -6,3 +6,5 @@ Aplikacja pozwala na:
 - wyznaczenie macierzy odległości,
 - wyznaczenie wierzchołka centralnego oraz centralnego minimax,
 - wyznaczenie najmniejszego drzewa rozpinającego.
+#
+Wylosowany graf przedstawiony jest na okręgu. Aplikacja stworzona w technologii WPF przy użyciu języka C#.
